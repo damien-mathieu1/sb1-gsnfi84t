@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 function App() {
   // Array of real flame GIFs
@@ -19,114 +19,158 @@ function App() {
 
   const songUrl = "/gangstaparadisetechno.mp3"; // Place the song in the public folder
 
+  const [showContent, setShowContent] = useState(false);
+  const [result, setResult] = useState("");
+
+  const handleButtonClick = () => {
+    setShowContent(true);
+    const audio = new Audio(songUrl);
+    audio.play();
+  };
+
+  const handleResultButtonClick = () => {
+    const outcomes = ["Ange", "Démon"];
+    const randomOutcome = outcomes[Math.floor(Math.random() * outcomes.length)];
+    setResult(randomOutcome);
+  };
+
   return (
     <div className="min-h-screen overflow-hidden relative flex flex-col items-center justify-center bg-black">
-      <audio autoPlay loop>
-        <source src={songUrl} type="audio/mp3" />
-        Your browser does not support the audio element.
-      </audio>
-      {/* Flame GIFs positioned around the screen */}
-      <div className="absolute inset-0 overflow-hidden">
-        {flameGifs.map((gif, index) => {
-          // Calculate position based on index
-          // This creates a circular pattern around the center
-          const angle = (index / flameGifs.length) * 2 * Math.PI;
-          const radius = 40; // % from center
-          const top = 50 + radius * Math.sin(angle);
-          const left = 50 + radius * Math.cos(angle);
+      {!showContent ? (
+        <button
+          onClick={handleButtonClick}
+          className="px-4 py-2 bg-orange-600 text-white rounded-full shadow-lg hover:bg-orange-700 focus:outline-none"
+        >
+          Fais moi confiance 😈
+        </button>
+      ) : (
+        <>
+          <audio autoPlay loop>
+            <source src={songUrl} type="audio/mp3" />
+            Your browser does not support the audio element.
+          </audio>
+          {/* Flame GIFs positioned around the screen */}
+          <div className="absolute inset-0 overflow-hidden">
+            {flameGifs.map((gif, index) => {
+              // Calculate position based on index
+              // This creates a circular pattern around the center
+              const angle = (index / flameGifs.length) * 2 * Math.PI;
+              const radius = 40; // % from center
+              const top = 50 + radius * Math.sin(angle);
+              const left = 50 + radius * Math.cos(angle);
 
-          // Randomize size for variety
-          const size = 25 + (index % 3) * 10; // 25%, 35%, or 45% of viewport
+              // Randomize size for variety
+              const size = 25 + (index % 3) * 10; // 25%, 35%, or 45% of viewport
 
-          return (
-            <div
-              key={index}
-              className="absolute z-0 transform -translate-x-1/2 -translate-y-1/2"
-              style={{
-                top: `${top}%`,
-                left: `${left}%`,
-                width: `${size}vw`,
-                height: `${size}vw`,
-                opacity: 0.85,
-                mixBlendMode: "screen",
-                pointerEvents: "none",
-              }}
-            >
+              return (
+                <div
+                  key={index}
+                  className="absolute z-0 transform -translate-x-1/2 -translate-y-1/2"
+                  style={{
+                    top: `${top}%`,
+                    left: `${left}%`,
+                    width: `${size}vw`,
+                    height: `${size}vw`,
+                    opacity: 0.85,
+                    mixBlendMode: "screen",
+                    pointerEvents: "none",
+                  }}
+                >
+                  <img
+                    src={gif}
+                    alt="Flame"
+                    className="w-full h-full object-cover"
+                    style={{
+                      filter: "brightness(1.2) contrast(1.1)",
+                      transform: `rotate(${index * 30}deg)`, // Rotate each flame differently
+                    }}
+                  />
+                </div>
+              );
+            })}
+
+            {/* Additional flames at the bottom */}
+            <div className="absolute bottom-0 left-0 w-full h-1/3 flex justify-between overflow-hidden">
+              {[...Array(5)].map((_, index) => (
+                <div
+                  key={`bottom-${index}`}
+                  className="h-full"
+                  style={{
+                    width: "25%",
+                    transform: `translateY(${10 + index * 5}%)`,
+                    opacity: 0.9,
+                    mixBlendMode: "screen",
+                    pointerEvents: "none",
+                  }}
+                >
+                  <img
+                    src={flameGifs[index % flameGifs.length]}
+                    alt="Bottom Flame"
+                    className="w-full h-full object-cover"
+                    style={{
+                      filter: "brightness(1.3) contrast(1.2)",
+                      transform: `scaleY(1.2) scaleX(${1 + index * 0.1})`,
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Overlay to blend flames together */}
+            <div className="absolute inset-0 bg-gradient-radial from-transparent to-black opacity-70"></div>
+          </div>
+
+          {/* Background glow */}
+          <div className="absolute inset-0 bg-gradient-to-t from-orange-900/30 to-black/50 z-0"></div>
+
+          {/* Content */}
+          <div className="z-10 flex flex-col items-center justify-center h-screen">
+            {/* Logo Image */}
+            <div className="w-4/5 max-w-md relative">
               <img
-                src={gif}
-                alt="Flame"
-                className="w-full h-full object-cover"
-                style={{
-                  filter: "brightness(1.2) contrast(1.1)",
-                  transform: `rotate(${index * 30}deg)`, // Rotate each flame differently
-                }}
+                src="/eternitech.gif"
+                alt="Eternitech Logo"
+                className="w-full rounded-full shadow-2xl shadow-orange-500/50 border-4 border-orange-600/50"
+              />
+
+              {/* Stronger glow effect */}
+              <div className="absolute -inset-4 rounded-full bg-orange-500/30 blur-xl -z-10 animate-pulse"></div>
+              <div
+                className="absolute -inset-8 rounded-full bg-orange-600/20 blur-2xl -z-20 animate-pulse"
+                style={{ animationDelay: "0.5s" }}
+              ></div>
+            </div>
+
+            {/* Flame overlay on top of logo for extra effect */}
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-lg h-full max-h-lg opacity-40 mix-blend-screen pointer-events-none">
+              <img
+                src="https://media.giphy.com/media/26BRx71hqRexBe7Wo/giphy.gif"
+                alt="Flame Overlay"
+                className="w-full h-full object-cover rounded-full"
+                style={{ filter: "hue-rotate(-10deg) brightness(1.3)" }}
               />
             </div>
-          );
-        })}
 
-        {/* Additional flames at the bottom */}
-        <div className="absolute bottom-0 left-0 w-full h-1/3 flex justify-between overflow-hidden">
-          {[...Array(5)].map((_, index) => (
-            <div
-              key={`bottom-${index}`}
-              className="h-full"
-              style={{
-                width: "25%",
-                transform: `translateY(${10 + index * 5}%)`,
-                opacity: 0.9,
-                mixBlendMode: "screen",
-                pointerEvents: "none",
-              }}
-            >
-              <img
-                src={flameGifs[index % flameGifs.length]}
-                alt="Bottom Flame"
-                className="w-full h-full object-cover"
-                style={{
-                  filter: "brightness(1.3) contrast(1.2)",
-                  transform: `scaleY(1.2) scaleX(${1 + index * 0.1})`,
-                }}
-              />
+            {/* "VOTEZ ETERNITECH" Text */}
+            <div className="mt-4 text-white text-3xl font-bold">
+              VOTEZ ETERNITECH
             </div>
-          ))}
-        </div>
 
-        {/* Overlay to blend flames together */}
-        <div className="absolute inset-0 bg-gradient-radial from-transparent to-black opacity-70"></div>
-      </div>
-
-      {/* Background glow */}
-      <div className="absolute inset-0 bg-gradient-to-t from-orange-900/30 to-black/50 z-0"></div>
-
-      {/* Content */}
-      <div className="z-10 flex flex-col items-center justify-center h-screen">
-        {/* Logo Image */}
-        <div className="w-4/5 max-w-md relative">
-          <img
-            src="/eternitech.gif"
-            alt="Eternitech Logo"
-            className="w-full rounded-full shadow-2xl shadow-orange-500/50 border-4 border-orange-600/50"
-          />
-
-          {/* Stronger glow effect */}
-          <div className="absolute -inset-4 rounded-full bg-orange-500/30 blur-xl -z-10 animate-pulse"></div>
-          <div
-            className="absolute -inset-8 rounded-full bg-orange-600/20 blur-2xl -z-20 animate-pulse"
-            style={{ animationDelay: "0.5s" }}
-          ></div>
-        </div>
-
-        {/* Flame overlay on top of logo for extra effect */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-lg h-full max-h-lg opacity-40 mix-blend-screen pointer-events-none">
-          <img
-            src="https://media.giphy.com/media/26BRx71hqRexBe7Wo/giphy.gif"
-            alt="Flame Overlay"
-            className="w-full h-full object-cover rounded-full"
-            style={{ filter: "hue-rotate(-10deg) brightness(1.3)" }}
-          />
-        </div>
-      </div>
+            {/* Button and Result */}
+            <button
+              onClick={handleResultButtonClick}
+              className="mt-4 px-4 py-2 bg-orange-600 text-white rounded-full shadow-lg hover:bg-orange-700 focus:outline-none"
+            >
+              Es-tu Ange ou Démon ? 😈
+            </button>
+            {result && (
+              <div className="mt-4 text-white text-2xl font-bold">
+                Tu es un(e) {result}!
+              </div>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }
