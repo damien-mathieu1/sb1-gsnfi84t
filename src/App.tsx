@@ -5,16 +5,16 @@ function App() {
   const flameGifs = [
     "https://media.giphy.com/media/26BRx71hqRexBe7Wo/giphy.gif", // Large flame
     "https://media.giphy.com/media/xT0xeMA62E1XIlup68/giphy.gif", // Realistic fire
-    "https://media.giphy.com/media/3o7qDJKIO5rSeyHhvO/giphy.gif", // Burning flames
-    "https://media.giphy.com/media/l0ExhO2PmCVXFHFJK/giphy.gif", // Fire wall
-    "https://media.giphy.com/media/xTiTnJMoJUHpf0ZxHq/giphy.gif", // Flame burst
-    "https://media.giphy.com/media/l0HlHelCbB9fyXDOw/giphy.gif", // Fire explosion
-    "https://media.giphy.com/media/3o7qDMUZAJCvGokXKM/giphy.gif", // Flame background
-    "https://media.giphy.com/media/l0HlHelCbB9fyXDOw/giphy.gif", // Intense flames
-    "https://media.giphy.com/media/3o7qDJKIO5rSeyHhvO/giphy.gif", // Repeat for more coverage
-    "https://media.giphy.com/media/26BRx71hqRexBe7Wo/giphy.gif", // Repeat for more coverage
+    "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXloaXpzZXd6b3RscmRpNmxtYjMxM2s0N3VsaWsxbTFmM3Fjbmh4cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/XqPHWAIkmWV0c/giphy.gif", // Burning flames
+    "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXloaXpzZXd6b3RscmRpNmxtYjMxM2s0N3VsaWsxbTFmM3Fjbmh4cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/XqPHWAIkmWV0c/giphy.gif", // Fire wall
+    "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHBkNHp6Z2dkcm40dWh6Y3dmbGkyMHNsMnl2OG45cmdxMHQ1d2t1OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT8qBjhC0OdVK9FTws/giphy.gif", // Flame burst
+    "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGVlajZvMDlndGk3N3NpeHFteHZ1NWlseDE1dG1jYWh1Y2prZmQ1dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4TMqcN59kg3Yc/giphy.gif", // Fire explosion
+    "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGFhaGJneGNqOWVudnFlY2F6aXhsa2k4M3FkNWl3MjhtZmR4cmh4ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/11yhfG1i0SPQyI/giphy.gif", // Flame background
+    "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWlqejZ5aGw0dngyOGp1Z2xyN3BkNGs0Y2RyZnNrOWpvdW1scGhzaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Lopx9eUi34rbq/giphy.gif", // Intense flames
+    "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXloaXpzZXd6b3RscmRpNmxtYjMxM2s0N3VsaWsxbTFmM3Fjbmh4cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/XqPHWAIkmWV0c/giphy.gif", // Repeat for more coverage
+    "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzh3MTZzdTFuM2d5eXBucDZhNXB1aXV4bWZqemhtNW5raWk4a3hocCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RIjXJ2cQHeHwTboXKf/giphy.gif", // Repeat for more coverage
     "https://media.giphy.com/media/xT0xeMA62E1XIlup68/giphy.gif", // Repeat for more coverage
-    "https://media.giphy.com/media/l0ExhO2PmCVXFHFJK/giphy.gif"  // Repeat for more coverage
+    "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzh3MTZzdTFuM2d5eXBucDZhNXB1aXV4bWZqemhtNW5raWk4a3hocCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RIjXJ2cQHeHwTboXKf/giphy.gif"  // Repeat for more coverage
   ];
   
   return (
@@ -98,7 +98,7 @@ function App() {
         {/* Logo Image */}
         <div className="w-4/5 max-w-md relative">
           <img 
-            src="https://i.ibb.co/Jt1NJhT/eternitech-logo.jpg" 
+            src="/eternitech.gif" 
             alt="Eternitech Logo" 
             className="w-full rounded-full shadow-2xl shadow-orange-500/50 border-4 border-orange-600/50"
           />
